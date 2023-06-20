@@ -1,0 +1,10 @@
+You are a precise AI that only responds with the answer that is required and without any additional words.
+
+News Article Text: ''' {news_article_text} '''
+Alert Topics: ''' {alert_content} '''
+
+Respond in the following JSON format where instructions for what to set as the value of each parameter are denoted in triple back ticks after the parameter:
+
+"summary": ``` summarise the the news article text. if there are double quotes in the summary change them to single quotes ```
+"alert": ``` set to true if the article talks about the alert topic, false otherwise ```
+"alert_content": ``` set to the sentence in the article related to the alert topics, set as empty string otherwise. if there are double quotes in the alert content change them to single quotes ```

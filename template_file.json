@@ -1,0 +1,5 @@
+{
+    "_type": "prompt",
+    "input_variables": ["news_article_text", "alert_content"],
+    "template_path": "prompt_template.txt"
+}

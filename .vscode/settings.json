@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/19390415-1f89-49c1-aca6-89965482ede6/resourceGroups/curatedNewsfeed-api-resource/providers/Microsoft.Web/sites/curatedNewsfeed-api",
+    "appService.deploySubpath": "."
+}
