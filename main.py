@@ -19,15 +19,15 @@ from typing import Optional
 import json
 
 #Loading the keys from environment.
-load_dotenv("./.env", verbose=True)
-BING_KEY = os.getenv('BING_KEY')
-OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+# load_dotenv("./.env", verbose=True)
+# BING_KEY = os.getenv('BING_KEY')
+# OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 
 #Creating an instance of FASTAPI().
 app = FastAPI()
 
 # Initializing LLM
-llm = OpenAI(temperature=0, openai_api_key=OPENAI_API_KEY)
+llm = OpenAI(temperature=0, openai_api_key="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")
 
 # Creating Prompt Template/s
 summary_prompt = load_prompt("template_file.json")
@@ -37,7 +37,7 @@ def bing_news_web_search(query: str, freshness: str, num_articles: int, market: 
     """This function makes calls to Bing News Search and returns a list of dictionaries."""
     # set parameters
     search_url = "https://api.bing.microsoft.com/v7.0/news/search"
-    headers = {"Ocp-Apim-Subscription-Key": BING_KEY}
+    headers = {"Ocp-Apim-Subscription-Key": "39f3ee7173804f388464e160ec345e71"}
     params = {
         "q": query,
         "textDecorations": False,
@@ -109,8 +109,12 @@ def summarizer_alerter_errors(article_text: str, alerts: str) -> dict:
     print(results)
     return json.loads(results)
 
-#Defining end-point for curating news articles about a single topic
 @app.get("/")
+async def root():
+    return {"message": "Hello World"}
+
+#Defining end-point for curating news articles about a single topic
+@app.get("/api")
 def return_query(query: str, freshness: str, num_articles: int, 
                  market: Optional[str] = None, alerts: Optional[str] = None) -> list[dict]:
     articles_list = bing_news_web_search(query=query, freshness=freshness, 
